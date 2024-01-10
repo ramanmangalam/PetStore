@@ -1,0 +1,102 @@
+{% extends "petapp/base.html" %} {% block content %}
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .signup-container {
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 280px;
+  }
+
+  .signup-container h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  .signup-form {
+    margin-top: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .form-group button:hover {
+    background-color: #218838;
+  }
+</style>
+
+<div class="signup-container" style="background-color: rgb(137, 206, 233);">
+  {% for message in messages %}
+  <!--=========  Alert message from bootstrap  ========== -->
+  <div
+    class="alert alert-{{message.tags}} alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>{{message}}</strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="close"
+    ></button>
+  </div>
+
+  {% endfor %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    <h1 class="text-dark fs-2">Sign up</h1>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="pass1" name="pass1" required />
+    </div>
+    <div class="form-group">
+      <label for="password2">Confirm Password:</label>
+      <input type="password" id="pass2" name="pass2" required />
+    </div>
+    <div class="form-group">
+      <button class="btn btn-outline-dark m-3" type="submit">Signup</button>
+      <br />
+      Already a User? <a href={% url "login" %}>Login</a>
+    </div>
+  </form>
+</div>
+{% endblock content %}
